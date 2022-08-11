@@ -341,14 +341,14 @@ class UserController extends Controller
 
     public function getPassword2nd()
     {   
-        if(Session::get('password2nd') !== null &&  Session::get('password2nd') == true){
+        // if(Session::get('password2nd') !== null &&  Session::get('password2nd') == true){
 
             return redirect()->route('admin.dashboard');
 
-        }else{
+        // }else{
 
-            return view('admin.password');
-        }
+        //     return view('admin.password');
+        // }
     }
 
     public function checkPassword2nd(Request $request)

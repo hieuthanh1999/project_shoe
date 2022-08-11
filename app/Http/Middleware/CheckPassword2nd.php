@@ -17,21 +17,22 @@ class CheckPassword2nd
      */
     public function handle($request, Closure $next)
     {   
-        if (Auth::guard('admin')->check()){
+        // if (Auth::guard('admin')->check()){
 
-            if(Session::get('password2nd') !== null &&  Session::get('password2nd') == true){
+        //     if(Session::get('password2nd') !== null &&  Session::get('password2nd') == true){
 
-                return $next($request);
+              
 
-            }else{
+        //     }else{
 
-                Session::put('password2nd', false);
+        //         Session::put('password2nd', false);
 
-                return redirect()->route('admin.password2nd');
-            }
-        }else{
+        //         return redirect()->route('admin.password2nd');
+        //     }
+        // }else{
 
-            return redirect()->route('admin.login');
-        }
+        //     return redirect()->route('admin.login');
+        // }
+        return $next($request);
     }
 }

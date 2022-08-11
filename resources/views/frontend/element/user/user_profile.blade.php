@@ -251,63 +251,63 @@
       });
     });
 
-    var readURL = function(input) {
-      if (input.files && input.files[0]) {
-        var reader = new FileReader();
+    // var readURL = function(input) {
+    //   if (input.files && input.files[0]) {
+    //     var reader = new FileReader();
 
-        reader.onload = function (e) {
-          $('.avatar').attr('src', e.target.result);
-        }
-        reader.readAsDataURL(input.files[0]);
-      }
-    }
+    //     reader.onload = function (e) {
+    //       $('.avatar').attr('src', e.target.result);
+    //     }
+    //     reader.readAsDataURL(input.files[0]);
+    //   }
+    // }
 
-    $(".file-upload").on('change', function(){
-      readURL(this);
-    });
+    // $(".file-upload").on('change', function(){
+    //   readURL(this);
+    // });
   });
 
-  $('#avatar').on('click', function() {
-    $('#avatarfile').trigger('click');
-  });
+  // $('#avatar').on('click', function() {
+  //   $('#avatarfile').trigger('click');
+  // });
 
   $('body').attr('color','red');
 
-  $('form#myForm').submit(function (e) {
-    $("#lock_overlay").css("display", "block");
-    e.preventDefault();
-    var formData = new FormData($('form#myForm')[0]);
-    // console.log(formData);
-    var myFile = $('#avatarfile').prop('files');
-    formData.append('avatarfile', myFile); 
-    $.ajax({
-        url: "{{route('frontend.post_user_profile')}}",
-        type: 'POST',
-        data: formData,
-        contentType: false,
-        cache : false,
-        processData: false,
-        success: function (res) {
+  // $('form#myForm').submit(function (e) {
+  //   $("#lock_overlay").css("display", "block");
+  //   e.preventDefault();
+  //   var formData = new FormData($('form#myForm')[0]);
+  //   // console.log(formData);
+  //   var myFile = $('#avatarfile').prop('files');
+  //   formData.append('avatarfile', myFile); 
+  //   $.ajax({
+  //       url: "{{route('frontend.post_user_profile')}}",
+  //       type: 'POST',
+  //       data: formData,
+  //       contentType: false,
+  //       cache : false,
+  //       processData: false,
+  //       success: function (res) {
 
-          $("#lock_overlay").css("display", "none");
-          $('input').parent().find('p').remove();
+  //         $("#lock_overlay").css("display", "none");
+  //         $('input').parent().find('p').remove();
 
-          if (res.code == 200) {
-            alert(res.message);
-          }
+  //         if (res.code == 200) {
+  //           alert(res.message);
+  //         }
 
-          if (res.code == 201) {
-            var errors = res.data;
-            var errors_array = JSON.parse(JSON.stringify(errors));
-            //console.log(errors_array);
-            for (var i = 0; i < errors_array.length; i++) {
-                //console.log(errors_array[i].key);
-                $('input[name="' + errors_array[i].key + '"]').parent().append('<p style="color: red;">' + errors_array[i].mess + '</p>');
-              }
-            }
-          }
-    });
-  });
+  //         if (res.code == 201) {
+  //           var errors = res.data;
+  //           var errors_array = JSON.parse(JSON.stringify(errors));
+  //           //console.log(errors_array);
+  //           for (var i = 0; i < errors_array.length; i++) {
+  //               //console.log(errors_array[i].key);
+  //               $('input[name="' + errors_array[i].key + '"]').parent().append('<p style="color: red;">' + errors_array[i].mess + '</p>');
+  //             }
+  //           }
+  //         }
+  //   });
+  // });
 
   $('form#passForm').submit(function (e) {
     $("#lock_overlay").css("display", "block");
