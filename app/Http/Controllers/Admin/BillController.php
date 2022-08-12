@@ -9,6 +9,7 @@ use Auth;
 use PDF;
 use Storage;
 use File;
+use Illuminate\Support\Facades\Redirect;
 
 class BillController extends Controller
 {
@@ -20,7 +21,13 @@ class BillController extends Controller
         $this->bill = $billRepository;
     }
 
-    /**
+    public function cancelOrder($id){
+        $this->bill->getCanceled($id);
+        $updateBill = $this->bill->update(['status'=> 3], (int) $id);
+        return redirect()->back();
+    }
+
+        /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
@@ -28,7 +35,7 @@ class BillController extends Controller
     public function index(Request $request)
     {
         $view['listBill'] = $this->bill->getListBill($request->all(), $request->url());
-
+        $view['config'] = config('app.status');
         return view('admin.bill.list', $view);
     }
 
@@ -87,16 +94,14 @@ class BillController extends Controller
         $errors = [];
 
         $checkStatusBill = $this->bill->getDetailBill($request->bill_id);
-
+       
         $updateStock = $this->bill->updateStockProduct($request->bill_id);
-
-        if($checkStatusBill->status == 1 || $checkStatusBill->status == 4)
+        if($checkStatusBill->status == 1 || $checkStatusBill->status ==4)
         {   
-            if($request->status == 2){
-
+            if( (int)$request->status == 3){
                 if($updateStock['type'] == true){
 
-                    $updateBill = $this->bill->update(['status'=>$request->status], $request->bill_id);
+                    $updateBill = $this->bill->update(['status'=> (int) $request->status], $request->bill_id);
                 }else{
 
                     $updateBill = false;
@@ -105,11 +110,14 @@ class BillController extends Controller
                 }
             }
 
-            if($request->status == 3){
+            if( (int)$request->status == 2 || (int)$request->status == 1){
 
-                $updateBill = $this->bill->update(['status'=>$request->status], $request->bill_id);
+                $updateBill = $this->bill->update(['status'=>(int) $request->status], $request->bill_id);
             }
-            
+            if((int)$request->status == 4 ){
+                $this->bill->getCanceled($request->bill_id);
+                $updateBill = $this->bill->update(['status'=> 3],$request->bill_id);
+            }
         }else{
 
             $updateBill = false;

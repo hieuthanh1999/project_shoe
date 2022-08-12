@@ -283,6 +283,8 @@ class UserController extends Controller
         }
     }
 
+   
+
     public function postLogin(Request $request)
     {   
         $rules = [

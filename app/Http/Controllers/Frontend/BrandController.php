@@ -5,14 +5,17 @@ namespace App\Http\Controllers\Frontend;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Repositories\Interfaces\BrandRepositoryInterface;
+use App\Repositories\Interfaces\UserRepositoryInterface;
 
 class BrandController extends Controller
 {   
     private $brand;
-
-    public function __construct(BrandRepositoryInterface $brandRepository)
+    private $user;
+    
+    public function __construct(BrandRepositoryInterface $brandRepository,   UserRepositoryInterface $userRepository)
     {
         $this->brand = $brandRepository;
+        $this->user = $userRepository;
     }
 
     /**

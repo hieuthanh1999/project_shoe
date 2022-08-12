@@ -15,6 +15,7 @@ use Socialite;
 use Image;
 use Cart;
 
+
 class UserController extends Controller
 {	
 	private $user;
@@ -103,13 +104,14 @@ class UserController extends Controller
 
 	public function getLogin()
 	{
+		$view['admin'] = $this->user->getInfoAdmin();
 		if(Auth::check())
 		{
 			return redirect()->route('frontend.home');
 
 		}else{
 
-			return view('frontend.content.login');
+			return view('frontend.content.login', $view);
 		}
 	}
 
@@ -141,7 +143,7 @@ class UserController extends Controller
     	$view['listComment'] = $this->comment->getCommentByUser(Auth::user()->id);
 
     	$view['listBill'] = $this->bill->getBillByUser(Auth::user()->id, $request->url());
-
+		$view['admin'] = $this->user->getInfoAdmin();
     	// dd($view['listBill']);
 
     	return view('frontend.content.user', $view);

@@ -17,6 +17,7 @@ use Cart;
 use Illuminate\Support\Facades\DB;
 use Validator;
 use Carbon\Carbon;
+use App\Repositories\Interfaces\UserRepositoryInterface;
 
 class ShopController extends Controller
 {   
@@ -28,6 +29,7 @@ class ShopController extends Controller
     private $specification;
     private $billDetail;
     private $bill;
+    private $user;
 
     public function __construct(
         ProductRepositoryInterface $productRepository,
@@ -37,7 +39,8 @@ class ShopController extends Controller
         ColorRepositoryInterface $colorRepository,
         SpecificationRepositoryInterface $specificationRepository,
         BillRepositoryInterface $billRepository,
-        BillDetailRepositoryInterface $billDetailRepository
+        BillDetailRepositoryInterface $billDetailRepository,
+        UserRepositoryInterface $user
     )
     {
         $this->product = $productRepository;
@@ -48,6 +51,7 @@ class ShopController extends Controller
         $this->specification = $specificationRepository;
         $this->bill = $billRepository;
         $this->billDetail = $billDetailRepository;
+        $this->user = $user;
     }
 
     /**
@@ -72,6 +76,7 @@ class ShopController extends Controller
         $view['listCategory'] = $this->category->getListCategoryNotParent();
         $view['listColor'] = $this->color->getListColor();
         $view['sidebarFilter'] = $this->specification->sidebarFilter();
+        $view['admin'] = $this->user->getInfoAdmin();
         //dd($view['listProduct']->lastPage());
         return view('frontend.content.shop', $view);
     }
@@ -125,7 +130,7 @@ class ShopController extends Controller
         $view['listColor'] = $listColor;
         
         $view['review'] = getPercentStar($view['product']->comment);
-
+        $view['admin'] = $this->user->getInfoAdmin();
         // dd($view['product']->comment);
 
         return view('frontend.content.product', $view);
@@ -182,6 +187,8 @@ class ShopController extends Controller
                 'product_detail' => $productDetail
             ]
         ];
+        $productDetail->quantity -= $request->quantity;
+        $productDetail->save();
         //dd($cartInfo);
         $checkAddCart = false;
         
@@ -225,6 +232,7 @@ class ShopController extends Controller
         $view['cartTotal'] = Cart::total();
         
         $view['user'] = Auth::user();
+        $view['admin'] = $this->user->getInfoAdmin();
 
         return view('frontend.content.cart', $view);
     }
@@ -234,7 +242,7 @@ class ShopController extends Controller
         $view['cartCount'] = Cart::count();
 
         $view['cartTotal'] = Cart::total();
-
+        $view['admin'] = $this->user->getInfoAdmin();
         return $this->dataSuccess('Success', $view);
     }
 

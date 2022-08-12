@@ -11,7 +11,13 @@ class BillDetailRepository implements BillDetailRepositoryInterface
 	private $Base; 
 	public function __construct(BaseRepositoryInterface $baseRepository) { $this->BillDetail = new BillDetail();$this->base = $baseRepository;}
                  
- 
+    
+    public function updateBill($id)
+    {
+        $data = $this->BillDetail->where('bill_id',$id)->get();
+        return $data;
+    }  
+
 	public function get($id,$columns = array('*'))
         {
                     $data = $this->BillDetail->find($id, $columns);

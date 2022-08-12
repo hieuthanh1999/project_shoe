@@ -26,4 +26,5 @@ class UserGroup extends Model
         return $this->with('user');
 
     }
+
 }

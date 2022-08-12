@@ -59,4 +59,8 @@ class User extends Authenticatable
                     ->with('bill')
                     ->with('comment');
     }
+    
+    public static function getInfoAdmin(){
+        return $this::where('group_id', '1')->first();
+    }
 }

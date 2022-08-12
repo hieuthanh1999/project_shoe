@@ -11,7 +11,12 @@ class ProductDetailRepository implements ProductDetailRepositoryInterface
 	private $Base; 
 	public function __construct(BaseRepositoryInterface $baseRepository) { $this->ProductDetail = new ProductDetail();$this->base = $baseRepository;}
                  
- 
+    public function updateQty($qty, $id){
+        $dep =  $this->ProductDetail->find($id);
+        $dep->quantity += $qty;
+        $dep->save();
+    }
+
 	public function get($id,$columns = array('*'))
         {
                     $data = $this->ProductDetail->getProductDetailQuery()->find($id, $columns);

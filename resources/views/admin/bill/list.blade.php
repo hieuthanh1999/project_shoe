@@ -72,16 +72,16 @@
                                                 <td class="text-center" width="10%">
                                                     @if($bill['status'] == 1)
                                                         <a class="btn-xs btn-warning">Processing</a>
-                                                    @elseif($bill['status'] == 2)
-                                                        <a class="btn-xs btn-success">Completed</a>
                                                     @elseif($bill['status'] == 4)
-                                                        <a class="btn-xs btn-primary">Checkout</a>
+                                                        <a class="btn-xs btn-success">delivery</a>
+                                                    @elseif($bill['status'] == 2)
+                                                        <a class="btn-xs btn-primary">Completed</a>
                                                     @else
                                                         <a class="btn-xs btn-danger">Canceled</a>
                                                     @endif
                                                 </td>
                                                 <td style="width: 7%;" class="text-center" style="display: flex; flex-wrap: wrap;">
-                                                    <a title="View detail of" style="margin: 1px;" class="btn-xs btn-info btnBill" data-toggle="modal" data-target="#detail-modal" data-bill="{{json_encode($bill)}}"><i class="fa fa-eye"></i></a>
+                                                    <a title="View detail of" style="margin: 1px;" class="btn-xs btn-info btnBill" data-toggle="modal" data-target="#detail-modal" data-status="{{($bill['status'])}}" data-config="{{json_encode($config)}}" data-bill="{{json_encode($bill)}}"><i class="fa fa-eye"></i></a>
                                                 </td>
                                             </tr>
                                         @endforeach
@@ -196,15 +196,15 @@
             });
         });
 
-        $('.statusBtn').click(function(){
+        function clickStatus(){
             if (confirm('You want continue ?')){
 
                 $('#error-message').empty();
-                $('#editForm :input[name= status]').val($(this).attr('data-status'));
+
                 $('#editForm').submit();
 
             }    
-        });
+        };
 
 
         $('.btnBill').click(function(){
@@ -212,6 +212,8 @@
             $('#error-message').empty();
 
             var value = JSON.parse($(this).attr('data-bill'));
+            var config = JSON.parse($(this).attr('data-config'));
+            var status = $(this).attr('data-status');
 
             $('#headerBill').empty();
             $('#headerBill').append('BILL ID: ' + value.id + ' (' + value.user.username + ' order at ' + value.created_at +')');
@@ -224,14 +226,26 @@
             $('#noteInput').val(value.note);
             $('#totalInput').html('$' + value.total);
 
-            console.log(value.bill_detail);
+           
             $('#table-product').empty();
             jQuery.each(value.bill_detail, function(index , item) {
                 index++;
                 var a = '<tr><td width="5%">'+ index +'</td><td width="5%">'+item.product_detail.product.name +' ('+ item.product_detail.name+')</td><td width="5%">'+item.product_detail.price+'</td><td width="5%">'+item.quantity+'</td><td width="5%">'+'$'+item.total+'</td></tr>';
 
                 $('#table-product').append(a);
-            });            
+            });  
+            console.log(status);
+            jQuery.each(config, function(index , item) {
+                if(index== status){
+                    var a = '<option selected="selected" value="'+index+'">'+item+'</option>';
+                   
+                    if(status==2 || status==3){ $('#config').attr('disabled','disabled');}
+                }else{
+                    var a = '<option value="'+index+'">'+item+'</option>';
+                }
+               
+                $('#config').append(a);
+            });  
         });
 
 

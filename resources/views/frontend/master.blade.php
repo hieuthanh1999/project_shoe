@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>FootWear Shop</title>
+<title>Anna Shop</title>
 <link rel="icon" href="http://www.stu.edu.vn/image.php?src=/uploads/news/98789fc7fe3b1ba8b9039a2244728c9d.png&w=150&aoe=1" type="image/gif" sizes="16x16">
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">

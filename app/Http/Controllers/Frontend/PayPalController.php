@@ -112,7 +112,7 @@ class PayPalController extends Controller
             $dataBill['user_id'] = Auth::user()->id;
             $dataBill['total'] = $payment->transactions[0]->amount->total;
             $dataBill['paypal_id'] = $payment->id;
-            $dataBill['status'] = 4;
+            $dataBill['status'] = 1;
 
             $saveBill = $this->bill->save($dataBill);
 
@@ -124,7 +124,7 @@ class PayPalController extends Controller
                     $dataDetail['product_detail_id'] = $item->options->product_detail->id;
                     $dataDetail['quantity'] = $item->qty;
                     $dataDetail['total'] = $item->price*$item->qty;
-                    $dataDetail['status'] = 4;
+                    $dataDetail['status'] = 1;
 
                     $saveBillDetail = $this->billDetail->save($dataDetail);
 

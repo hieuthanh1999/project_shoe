@@ -12,4 +12,5 @@ interface ProductDetailRepositoryInterface
  public function getListByColumn($column,$value,$columnsSelected = array('*')) ;  
  public function delete($id);  
  public function deleteMulti(array $data);  
+ public function updateQty($qty, $id);  
 } 

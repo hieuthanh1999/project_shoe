@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>FootWear Management</title>
+    <title>Anna Shop Management</title>
     <link rel="icon" href="http://www.stu.edu.vn/image.php?src=/uploads/news/98789fc7fe3b1ba8b9039a2244728c9d.png&w=150&aoe=1" type="image/gif" sizes="16x16">
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">

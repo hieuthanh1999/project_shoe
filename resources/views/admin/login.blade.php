@@ -3,7 +3,7 @@
 <!------ Include the above in your HEAD tag ---------->
 
 <!DOCTYPE html><html lang='en' class=''>
-<title>FootWear Shop</title>
+<title>Anna Shop</title>
 <link rel="icon" href="http://www.stu.edu.vn/image.php?src=/uploads/news/98789fc7fe3b1ba8b9039a2244728c9d.png&w=150&aoe=1" type="image/gif" sizes="16x16">
 <head><meta charset='UTF-8'><meta name="robots" content="noindex"><link rel="mask-icon" type="" href="//production-assets.codepen.io/assets/favicon/logo-pin-f2d2b6d2c61838f7e76325261b7195c27224080bc099486ddd6dccb469b8e8e6.svg" color="#111" /><link rel="canonical" href="https://codepen.io/frytyler/pen/EGdtg" />
 
@@ -70,7 +70,7 @@
 	<body>
 
 	<div class="login">
-		<h1>---FootWear---</h1>
+		<h1>---Anna Shop---</h1>
 		<p style="font-size: 11px;
     color: #fffdfd4f;">If you forget password or register, please contact me !!!</p>
 		<form id="myForm">

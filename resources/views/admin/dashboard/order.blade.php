@@ -42,7 +42,7 @@
               @elseif($item['status'] == 2)
               <a class="btn-xs btn-success">Completed</a>
               @elseif($item['status'] == 4)
-              <a class="btn-xs btn-primary">Checkout</a>
+              <a class="btn-xs btn-primary">Delivery</a>
               @else
               <a class="btn-xs btn-danger">Canceled</a>
               @endif

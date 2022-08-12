@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Frontend;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Repositories\Interfaces\UserRepositoryInterface;
 
 class ContactController extends Controller
 {

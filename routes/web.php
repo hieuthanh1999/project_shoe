@@ -62,6 +62,7 @@ Route::group(['middleware'=>'admin', 'prefix'=>'admin'], function (){
 		Route::get('/user', 'Admin\UserController@index')->name('admin.user.list');//List
 		Route::post('/user', 'Admin\UserController@store')->name('admin.user.store');//Store
 		Route::post('/user/change-password', 'Admin\UserController@changePassword')->name('admin.user.change');//Store
+		Route::post('/canceled-order/{id}', 'Admin\BillController@cancelOrder')->name('admin.user.canceled');//Store
 		Route::post('/user/update', 'Admin\UserController@update')->name('admin.user.update');//Update
 		Route::delete('/user/', 'Admin\UserController@destroyMulti')->name('admin.user.delete');//Detroy
 

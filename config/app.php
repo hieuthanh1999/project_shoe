@@ -14,7 +14,12 @@ return [
     */
 
     'name' => env('APP_NAME', 'Laravel'),
-
+    'status' => [
+        1 => 'Processing',
+        4 => 'delivery',
+        2 => 'Complete',
+        3 => 'Caneled',
+    ],
     /*
     |--------------------------------------------------------------------------
     | Application Environment

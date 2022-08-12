@@ -7,10 +7,9 @@
 						<div class="logo"><a href="{{asset('/template/frontend/')}}/#">Anna shop</a></div>
 					</div>
 					<div class="footer_title">Got Question? Call Us 24/7</div>
-					<div class="footer_phone">+355668062</div>
+					<div class="footer_phone">{{$admin->phone}}</div>
 					<div class="footer_contact_text">
-						<p>Đong Nhan, Hai Boi</p>
-						<p>Đong Anh, Ha Noi</p>
+						<p>{{$admin->address}}</p>
 					</div>
 					<div class="footer_social">
 						<ul>

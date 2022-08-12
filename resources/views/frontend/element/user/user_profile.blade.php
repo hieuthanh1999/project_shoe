@@ -111,6 +111,7 @@
             <th scope="col" class="text-center">Total</th>
             <th scope="col" class="text-center">Status</th>
             <th scope="col" class="text-center">Detail</th>
+            <th scope="col" class="text-center">Canceled</th>
           </tr>
         </thead>
         <tbody>
@@ -121,6 +122,16 @@
             <td class="text-center">{{'$'.$bill['total']}}</td>
             <td class="text-center">{{$bill['status']}}</td>
             <td class="text-center"><a class="btn btn-primary detail_btn" style="color: white" data-toggle="modal" data-target="#detail-modal" data-bill="{{json_encode($bill)}}"><i class="fa fa-eye" ></i></a></td>
+            @if($bill['status'] == 'Processing' && $bill['paypal_id']=='')
+            <td class="text-center">
+    
+            <form id="" method="POST" action="{{route('admin.user.canceled', $bill['id'])}}">
+            {{ csrf_field() }}
+              <button type="submit" class="btn btn-primary" style="color: white" >Canceled</button>
+              </form>
+             
+            </td>
+            @endif
           </tr>
           @endforeach
         </tbody>
@@ -251,25 +262,25 @@
       });
     });
 
-    // var readURL = function(input) {
-    //   if (input.files && input.files[0]) {
-    //     var reader = new FileReader();
+    var readURL = function(input) {
+      if (input.files && input.files[0]) {
+        var reader = new FileReader();
 
-    //     reader.onload = function (e) {
-    //       $('.avatar').attr('src', e.target.result);
-    //     }
-    //     reader.readAsDataURL(input.files[0]);
-    //   }
-    // }
+        reader.onload = function (e) {
+          $('.avatar').attr('src', e.target.result);
+        }
+        reader.readAsDataURL(input.files[0]);
+      }
+    }
 
-    // $(".file-upload").on('change', function(){
-    //   readURL(this);
-    // });
+    $(".file-upload").on('change', function(){
+      readURL(this);
+    });
   });
 
-  // $('#avatar').on('click', function() {
-  //   $('#avatarfile').trigger('click');
-  // });
+  $('#avatar').on('click', function() {
+    $('#avatarfile').trigger('click');
+  });
 
   $('body').attr('color','red');
 

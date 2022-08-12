@@ -2,16 +2,49 @@
 namespace App\Repositories\Repository; 
  
 use App\Repositories\Interfaces\BillRepositoryInterface; 
+use App\Repositories\Interfaces\BillDetailRepositoryInterface; 
 use App\Repositories\Interfaces\BaseRepositoryInterface; 
+use App\Repositories\Interfaces\ProductDetailRepositoryInterface; 
 use App\Models\Bill; 
- 
+
 class BillRepository implements BillRepositoryInterface 
 { 
 	private $Bill; 
-	private $Base; 
-	public function __construct(BaseRepositoryInterface $baseRepository) { $this->Bill = new Bill();$this->base = $baseRepository;}
+    private $Bill_details; 
+	private $Base;
+    private $product_details;
+
+	public function __construct(BaseRepositoryInterface $baseRepository, BillDetailRepositoryInterface $Bill_details, ProductDetailRepositoryInterface $product_details) { 
+        $this->Bill = new Bill();
+        $this->Bill_details = $Bill_details;
+        $this->base = $baseRepository;
+        $this->product_details = $product_details;
+    }
                  
- 
+    
+    public function getCanceled($id)
+    {
+        $data = $this->Bill->find((int)$id);
+        $check = $data->paypal_id;
+        // if($check){
+        //     return True;
+        // }else{
+        $list = $this->Bill_details->updateBill((int)$id);
+        // dd( $list);
+        foreach ($list as $item){
+            $this->product_details->updateQty($item->quantity, $item->product_detail_id);
+        }
+        // $updateBill = $this->Bill->update(['status'=> 3], (int)$id);
+
+        // if ($updateBill)
+        // {
+            
+        //     return True;
+        // }
+            
+        //}
+    }  
+
 	public function get($id,$columns = array('*'))
         {
                     $data = $this->Bill->find($id, $columns);
@@ -215,10 +248,10 @@ class BillRepository implements BillRepositoryInterface
                     $item->status = "Completed";
                     break;
                 case '4':
-                    $item->status = "Checkout";
+                    $item->status = "Delivery";
                     break;  
                 default:
-                    $item->status = "Cancel";
+                    $item->status = "Canceled";
                     break;
             }
         }

@@ -325,4 +325,10 @@ class UserRepository implements UserRepositoryInterface
 
         return $listLatestUser;
     }
+
+    public function getInfoAdmin()
+    {
+        $infoUser = $this->User->where('group_id', 1)->take(1)->first();
+        return $infoUser;
+    }
 } 

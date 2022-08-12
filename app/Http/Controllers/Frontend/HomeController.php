@@ -6,11 +6,13 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Repositories\Interfaces\CommentRepositoryInterface;
 use App\Repositories\Interfaces\ProductRepositoryInterface;
+use App\Repositories\Interfaces\UserRepositoryInterface;
 
 class HomeController extends Controller
 {   
     private $comment;
     private $product;
+    private $user;
     /**
      * Display a listing of the resource.
      *
@@ -18,18 +20,22 @@ class HomeController extends Controller
      */
      public function __construct(
         ProductRepositoryInterface $productRepository,
-        CommentRepositoryInterface $commentRepository
+        CommentRepositoryInterface $commentRepository,
+        UserRepositoryInterface $userRepository
+
     )
     {
         $this->comment = $commentRepository;
         $this->product = $productRepository;
+        $this->user = $userRepository;
     }
 
     public function index()
     {   
         $view['listReview'] = $this->comment->getReviewHome();
         $view['listNewProduct'] = $this->product->getNewProductHome();
-
+        $view['admin'] = $this->user->getInfoAdmin();
+        // dd($this->user->getInfoAdmin());
         // dd($view['listNewProduct']);
         return view('frontend.content.home', $view);
     }
