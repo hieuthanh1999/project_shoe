@@ -4,8 +4,8 @@
 			<div class="container">
 				<div class="row">
 					<div class="col d-flex flex-row">
-						<div class="top_bar_contact_item"><div class="top_bar_icon"><img src="{{asset('/template/frontend/')}}/images/phone.png" alt=""></div>{{$admin->phone}}</div>
-						<div class="top_bar_contact_item"><div class="top_bar_icon"><img src="{{asset('/template/frontend/')}}/images/mail.png" alt=""></div><a href="{{asset('/template/frontend/')}}/mailto:fastsales@gmail.com">{{$admin->email}}</a></div>
+						<div class="top_bar_contact_item"><div class="top_bar_icon"><img src="{{asset('/template/frontend/')}}/images/phone.png" alt=""></div>+355668062</div>
+						<div class="top_bar_contact_item"><div class="top_bar_icon"><img src="{{asset('/template/frontend/')}}/images/mail.png" alt=""></div><a href="{{asset('/template/frontend/')}}/mailto:fastsales@gmail.com">admin@gmail.com</a></div>
 						<div class="top_bar_content ml-auto">
 							<div class="top_bar_user">
 								@if(Auth::check())
