@@ -91,7 +91,9 @@
                                                     {{ $product['category']['name'] }}
                                                 </td>
                                                 <td class="text-center tdthuonghieu" style="width: 150px" nowrap>
+                                                @if($product['brand'])
                                                     {{$product['brand']['name'] }} 
+                                                    @endif
                                                 </td>
                                                 <td class="text-center tdchucnang" nowrap>
                                                     <a title="Edit {{ $product['name'] }}" style="margin: 1px;" class="btn-xs btn-warning btnEdit" href="#" data-toggle="modal" data-target="#edit-modal"

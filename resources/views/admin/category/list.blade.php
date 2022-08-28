@@ -83,7 +83,9 @@
                                                     ({{ $category->product_count }})
                                                 </td>
                                                 <td class="text-center">
+                                                    @if($category->categoryParent)
                                                     {{$category->categoryParent->name}}
+                                                    @endif
                                                 </td>
                                                 <td style="width: 140px;" class="text-center" style="display: flex; flex-wrap: wrap;">
                                                     <a style="margin: 1px;" class="btn-xs btn-warning btnEdit" data-toggle="modal" data-target="#edit-modal" data-edit="{{json_encode($category)}}"><i class="fa fa-edit"></i></a> &nbsp

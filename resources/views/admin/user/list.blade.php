@@ -8,8 +8,11 @@
                 <a class="btn btn-warning" id="btnAddPro" data-toggle="modal" data-target="#add-modal"><i class="fa fa-plus"></i></a>
 
                 <a class="btn btn-success" data-toggle="modal" data-target="#search-modal"><i class="fa fa-search"></i></a>
-
+                @if( Auth::guard('admin')->user()->group_id == 1)
+              
                 <a class="btn btn-danger" id="deletemultibutton"><i class="fa fa-trash"></i></a>
+                @endif
+
             </h1>
             <ol class="breadcrumb">
                 <li><a href="#"><i class="fa fa-home"></i>Home</a></li>
@@ -31,6 +34,11 @@
                             <!-- /.box-header -->
                             <div class="box-body">
                                 <div class="table-responsive">
+                                @if(session()->has('update'))
+                                <div class=" text-success custom" style="text-shadow: 0 0 1px black;">
+                                    {{session()->get('update')}}
+                                </div>
+                                @endif
                                     <table class="table table-hover middle-table-text">
                                         <thead>
                                             <tr>
@@ -38,7 +46,7 @@
                                                     <p class="btn-xs btn-danger dodeletemulti" style="cursor: pointer;"><i class="fa fa-trash"></i></p>
                                                     <input type="checkbox" name="" id="checkAll">    
                                                 </th>
-                                                <th rowspan="2" class="text-center">Platform</th>
+                                                <th rowspan="2" class="text-center">Classify</th>
                                                 <th rowspan="2" class="text-center thtensanpham">
                                                     Username
                                                     <i class="glyphicon glyphicon-circle-arrow-up sortTenASC" style="cursor: pointer;" data-sort="ASC"></i>
@@ -54,7 +62,7 @@
                                                 <th rowspan="2" class="text-center thsoluong">Address</th>
                                                 <th rowspan="2" class="text-center thloaisp">Phone</th>
                                                 <th rowspan="2" class="text-center ththuonghieu">Gender</th>
-                                                 <th rowspan="2" class="text-center thchucnang">Action</th>
+                                                 <th rowspan="2" colspan="2" class="text-center thchucnang">Action</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -66,7 +74,13 @@
                                                     <input type="checkbox" class="checkmasp" name="checkmasp" value="{{$user['id']}}"> 
                                                 </td>
                                                 <td class="text-center">
-                                                    <b>{{$user['provider'] or 'website'}}<b>
+                                                @if($user['group_id']==2)
+                                               Customer
+                                                @else
+                                                @if($user['group_id']==3)
+                                                Employee
+                                                @endif
+                                                @endif
                                                 </td>
                                                 <td class="text-center tdtensanpham" style="width: 200px; font-weight: bold;" nowrap>
                                                     <a target="_blank" rel="noopener noreferrer" style="color: black;">{{ $user['username'] }}</a>
@@ -94,6 +108,19 @@
                                                 <td class="text-center tdchucnang" nowrap>
                                                     <a style="margin: 1px;" class="btn-xs btn-warning btnEdit" href="#" data-toggle="modal" data-target="#edit-modal" data-edit="{{json_encode($user)}}"><i class="fa fa-edit"></i></a>
                                                 </td>
+                                                @if( Auth::guard('admin')->user()->group_id == 1)
+                                                @if($user['group_id']==2)
+                                                <td class="text-center tdchucnang" nowrap>
+                                                    <a style="margin: 1px;" class="btn-xs btn-warning btnEdit" href="/admin/user/changeem/{{$user['id']}}">Set Employee</a>
+                                                </td>
+                                                @else
+                                                @if($user['group_id']==3)
+                                                <td class="text-center tdchucnang" nowrap>
+                                                    <a style="margin: 1px;" class="btn-xs btn-warning btnEdit"  href="/admin/user/removeem/{{$user['id']}}">Remove Employee</a>
+                                                </td>
+                                                @endif
+                                                @endif
+                                                @endif
                                             </tr>
                                         @endforeach
                                         </tbody>

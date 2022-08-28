@@ -168,18 +168,18 @@ class ColorController extends Controller
         
         if($countColor > 0){
 
-           return $this->dataError('Không thể xóa màu sắc này vì đã có sản phẩm tồn tại!'); 
+           return $this->dataError('You need to delete the product first!!'); 
         }
 
         $delete = $this->color->delete($request->color_id);
 
         if($delete){
 
-            return $this->dataSuccess('Xóa danh mục sản phẩm thành công!');
+            return $this->dataSuccess('Delete Brand Successfully');
 
         }else{
 
-            return $this->dataError('Thất bại!');
+            return $this->dataError('Failed');
         }
     }
 }

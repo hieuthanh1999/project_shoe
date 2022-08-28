@@ -9,7 +9,7 @@
 						<div class="top_bar_content ml-auto">
 							<div class="top_bar_user">
 								@if(Auth::check())
-								<div class="user_icon"><img src="{{asset(Auth::user()->image)}}" alt=""></div>
+								<div class="user_icon"></div>
 								<div><a href="#">{{Auth::user()->username}}</a></div>
 								<div><a href="{{route('frontend.logout')}}">Logout</a></div></div>
 								@else
@@ -123,7 +123,9 @@
 									<li><a href="{{route('frontend.home')}}">HOME<i class="fas fa-chevron-down"></i></a></li>
 									<li><a href="{{route('frontend.shopping')}}">SHOPPING<i class="fas fa-chevron-down"></i></a></li>
 									<li><a href="{{route('frontend.shopping_cart')}}">CART<i class="fas fa-chevron-down"></i></a></li>
+									@if(Auth::check())
 									<li><a href="{{route('frontend.user_profile')}}">PROFILE<i class="fas fa-chevron-down"></i></a></li>
+									@endif
 									<li><a href="{{route('frontend.contact')}}">CONTACT<i class="fas fa-chevron-down"></i></a></li>
 								</ul>
 							</div>

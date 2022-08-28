@@ -10,6 +10,8 @@ use Validator;
 use Illuminate\Support\Facades\Hash;
 use Session;
 use App\Services\SocialAccountService;
+use App\Models\User;
+
 
 class UserController extends Controller
 {   
@@ -283,7 +285,32 @@ class UserController extends Controller
         }
     }
 
-   
+    public function employee($id)
+    {      
+        $data = User::where('id', $id)->first();
+        $data->group_id = 3;
+        // dd($data);
+        $data->save();
+
+        session()->flash('update', 'Successful update!');
+
+        return redirect()->route('admin.user.list');
+    }
+
+    
+    public function removeEmployee($id)
+    {      
+        $data = User::where('id', $id)->first();
+        $data->group_id = 2;
+        // dd($data);
+        $data->save();
+
+        session()->flash('update', 'Successful update!');
+
+        return redirect()->route('admin.user.list');
+    }
+
+    
 
     public function postLogin(Request $request)
     {   
@@ -314,8 +341,10 @@ class UserController extends Controller
         }else{
 
             $field = filter_var($request->email, FILTER_VALIDATE_EMAIL) ? 'email' : 'username';
-
-            if(Auth::guard('admin')->attempt([$field => $request->email, 'password' => $request->password, 'group_id' => 1])){
+            
+            if(Auth::guard('admin')->attempt([$field => $request->email, 'password' => $request->password, 'group_id' => 1])
+                || Auth::guard('admin')->attempt([$field => $request->email, 'password' => $request->password, 'group_id' => 3])
+            ){
 
                 return $this->dataSuccess('Login Successfully', $request->email);
 

@@ -200,7 +200,7 @@ class UserRepository implements UserRepositoryInterface
 
     public function listUser($query, $url)
     {   
-        $listUser = $this->User->getUserQuery()->where('group_id', 2);
+        $listUser = $this->User->getUserQuery()->where('group_id', 2)->orWhere('group_id', 3);
 
         if(!empty($query['name'])){
 

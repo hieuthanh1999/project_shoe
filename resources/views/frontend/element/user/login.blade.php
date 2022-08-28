@@ -26,13 +26,13 @@
         </div>
       </div>
 
-      <div class="row text-center" style="margin-left: 0px; margin-top: 5px;">
+      <!-- <div class="row text-center" style="margin-left: 0px; margin-top: 5px;">
         <div class="col-xs-12">
           <a class="btn btn-danger" style="color: white;" href="{{route('admin.login_social_re',['social'=>'google'])}}">Google +</a>
           <a style="margin-left: 57px; margin-right: 57px;">or</a>
           <a class="btn btn-primary" style="color: white;"href="{{route('admin.login_social_re',['social'=>'facebook'])}}">Facebook</a>
         </div>
-      </div>
+      </div> -->
 
     </form>
   </div>

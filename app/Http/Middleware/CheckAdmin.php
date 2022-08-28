@@ -18,7 +18,7 @@ class CheckAdmin
     {   
         if (Auth::guard('admin')->check()){
 
-            if(Auth::guard('admin')->user()->group_id == 1){
+            if(Auth::guard('admin')->user()->group_id == 1 || Auth::guard('admin')->user()->group_id == 3){
 
                 return $next($request);
 

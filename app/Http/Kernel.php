@@ -61,5 +61,6 @@ class Kernel extends HttpKernel
         'cart' => \App\Http\Middleware\RestoreCart::class,
         'user' => \App\Http\Middleware\CheckUser::class,
         'password2nd' => \App\Http\Middleware\CheckPassword2nd::class,
+        'employee' => \App\Http\Middleware\CheckadminorEmployee::class,
     ];
 }

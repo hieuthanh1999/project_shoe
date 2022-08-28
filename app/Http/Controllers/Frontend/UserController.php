@@ -188,7 +188,7 @@ class UserController extends Controller
 		
 			$this->user->update($data, Auth::user()->id);
 
-			return $this->dataSuccess('Update your profile successfully.');
+			return back();
 		}
 	}
 

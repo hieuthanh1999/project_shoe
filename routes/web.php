@@ -25,7 +25,8 @@ Route::group(['middleware'=>'admin', 'prefix'=>'admin'], function (){
 
 		Route::get('/dashboard', 'Admin\DashboardController@index')->name('admin.dashboard');
 		Route::get('/statistical', 'Admin\DashboardController@getStatistical')->name('admin.statistical');
-
+		Route::post('/statistical', 'Admin\DashboardController@search')->name('admin.searchDoanhThu');
+  
 		//Product
 		Route::get('/product', 'Admin\ProductController@index')->name('admin.product.list');//List
 		Route::post('/product/store', 'Admin\ProductController@store')->name('admin.product.store');//Store
@@ -60,6 +61,8 @@ Route::group(['middleware'=>'admin', 'prefix'=>'admin'], function (){
 
 		//User
 		Route::get('/user', 'Admin\UserController@index')->name('admin.user.list');//List
+		Route::get('/user/changeem/{id}', 'Admin\UserController@employee')->name('admin.user.employee');//List
+		Route::get('/user/removeem/{id}', 'Admin\UserController@removeEmployee')->name('admin.user.employeeRemove');//List
 		Route::post('/user', 'Admin\UserController@store')->name('admin.user.store');//Store
 		Route::post('/user/change-password', 'Admin\UserController@changePassword')->name('admin.user.change');//Store
 		Route::post('/canceled-order/{id}', 'Admin\BillController@cancelOrder')->name('admin.user.canceled');//Store

@@ -28,7 +28,7 @@
                                 <h3 class="box-title"><b>{{$productDetail->name}}</b></h3>
                             </div><!-- /.box-header -->
                             <div class="box-body text-center">
-                                <img src="{{asset($productDetail->image)}}" class="img-rounded" width="60%" style="padding-bottom: 5px;">
+                                <img src="{{asset($productDetail->image)}}" class="x" width="60%" style="padding-bottom: 5px;">
                                 <p><b> Price: {{'$'.$productDetail->price}} </b> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>Quantity: {{$productDetail->quantity}} </b></p>
                                 <a data-toggle="modal" data-target="#edit-modal" title="Sửa Sản phẩm Chi tiết {{ 
                                 'name' }}" class="btn-xs btn-warning btnEdit" href="#" data-edit="{{json_encode($productDetail)}}"><i class="fa fa-edit"></i></a>&nbsp
@@ -44,7 +44,7 @@
                             <h3 class="box-title"></h3>
                         </div><!-- /.box-header -->
                         <div class="box-body text-center">
-                            <a href="#"><img src="https://www.tedthomas.com/wp-content/uploads/2016/06/plus.png" width="60%" data-toggle="modal" data-target="#add-modal"></a>
+                            <a href="#"><i class="fa-solid fa-plus"></i><img src="{{URL::asset('plus_2795.png')}}" width="10%" data-toggle="modal" data-target="#add-modal"></a>
                         </div><!-- /.box-body -->
                     </div><!-- /.box -->
                 </div>

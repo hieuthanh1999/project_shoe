@@ -91,7 +91,9 @@
                         if(res.code == 200){
                             alert(res.message);
                             window.location.href = '{{ route('admin.brand.list') }}'
-                        }          
+                        }     else{
+                            alert(res.message);
+                        }           
                     }
                 });
             }

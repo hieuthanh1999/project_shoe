@@ -21,7 +21,8 @@ class Bill extends Model
         'total',
         'date_receive',
         'date_delivery',
-        'paypal_id'
+        'paypal_id',
+        'created_at'
     ];
 
     public function user()

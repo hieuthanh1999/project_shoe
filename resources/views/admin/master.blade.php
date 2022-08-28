@@ -38,7 +38,7 @@
     <link rel="stylesheet" href="{{asset('/template/admin/')}}/plugins/colorpicker/css/colorpicker.css">
 
     <link rel="stylesheet" href="{{asset('/template/admin/')}}/dist/css/custom.css">
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js" charset="utf-8"></script>
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>

@@ -7,6 +7,7 @@
     "require": {
         "php": ">=7.0.0",
         "barryvdh/laravel-dompdf": "^0.8.3",
+        "consoletvs/charts": "6.*",
         "fideloper/proxy": "~3.3",
         "gloudemans/shoppingcart": "^2.5",
         "guzzlehttp/guzzle": "~6.0",
@@ -23,7 +24,7 @@
         "fzaninotto/faker": "~1.4",
         "mockery/mockery": "~1.0",
         "phpunit/phpunit": "~6.0",
-        "symfony/thanks": "^1.0"
+        "symfony/thanks": "^1.2"
     },
     "autoload": {
         "classmap": [
@@ -63,6 +64,10 @@
     "config": {
         "preferred-install": "dist",
         "sort-packages": true,
-        "optimize-autoloader": true
+        "optimize-autoloader": true,
+        "allow-plugins": {
+            "symfony/thanks": true
+        }
+       
     }
 }

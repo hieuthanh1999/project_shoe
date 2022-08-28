@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
+use App\Models\Product;
 use App\Http\Controllers\Controller;
 use App\Repositories\Interfaces\BrandRepositoryInterface;
 
@@ -237,7 +238,15 @@ class BrandController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function destroy(Request $request)
-    {
+    {  
+       
+        $countColor = $this->brand->get($request->brand_id)->product->count();
+       
+        if($countColor > 0){
+
+           return $this->dataError('You need to delete the product first!'); 
+        }
+
         $delete = $this->brand->delete($request->brand_id);
 
         if($delete){
@@ -248,5 +257,7 @@ class BrandController extends Controller
 
             return $this->dataError('Failed');
         }
+       
+       
     }
 }
