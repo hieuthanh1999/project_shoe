@@ -150,10 +150,10 @@ class DashboardController extends Controller
         // return $cateChart;
         $cateChart= $this->getChart();
        $listTopProduct = getPercentProduct($this->product->listTopProduct(10));
-
+       $kday = 0;
         $countProductWeek = $this->product->countProductWeek();
         // dd($view['countProductWeek']);
-        return view('admin.statistical.main',compact( 'listTopProduct', 'cateChart', 'countProductWeek'));
+        return view('admin.statistical.main',compact( 'listTopProduct', 'cateChart', 'countProductWeek', 'kday'));
     }
 
     public function search(Request $request)
@@ -190,8 +190,9 @@ class DashboardController extends Controller
             return view('admin.statistical.main',compact( 'listTopProduct', 'cateChart', 'countProductWeek', 'kday'));
         }
         else{
+            $kday = 0;
             $cateChart= $this->getChart();
-            return view('admin.statistical.main',compact( 'listTopProduct', 'cateChart', 'countProductWeek'));
+            return view('admin.statistical.main',compact( 'listTopProduct', 'cateChart', 'countProductWeek', 'kday'));
         }
       
     }
